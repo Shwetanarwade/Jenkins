@@ -1,0 +1,54 @@
+What is Jenkins?
+Jenkins is an open source continuous integration (CI) server. It manages and controls several stages of the software delivery process, including build, documentation, automated testing, packaging, and static code analysis. Jenkins is a highly popular DevOps tool used by thousands of development teams.
+
+Jenkins automation is commonly triggered by code changes in repositories like GitHub, Bitbucket, and GitLab, and integrates with build tools like Maven and Gradle. Jenkins supports the use of container technologies like Docker and Kubernetes for testing and packaging of software releases, but it is neither a Kubernetes native solution nor a container-native CI solution.
+
+
+
+This is part of an extensive series of guides about CI/CD.
+
+Jenkins Core Concepts
+Jenkins Controller (Formerly Master)
+The Jenkins architecture supports distributed builds. One Jenkins node functions as the organizer, called a Jenkins Controller. This node manages other nodes running the Jenkins Agent. It can also execute builds, although it isn’t as scalable as Jenkins agents.
+
+The controller holds the central Jenkins configuration. It manages agents and their connections, loads plugins, and coordinates project flow.
+
+Jenkins Agent (Formerly Slave)
+The Jenkins Agent connects to the Jenkins Controller to run build jobs. To run it, you’ll need to install Java on a physical machine, virtual machine, cloud compute instance, Docker image, or Kubernetes cluster.
+
+You can use multiple Jenkins Agents to balance build load, improve performance, and create a secure environment independent of the Controller.
+
+Jenkins Node
+A Jenkins node is an umbrella term for Agents and Controllers, regardless of their actual roles. A node is a machine on which you can build projects and pipelines. Jenkins automatically monitors the health of all connected nodes, and if metrics go below a threshold, it takes the node offline.
+
+Jenkins Project (Formerly Job)
+A Jenkins project or task is an automated process created by a Jenkins user. The plain Jenkins distribution offers a variety of build tasks that can support continuous integration workflows, and more are available through a large ecosystem of plugins.
+
+Jenkins Plugins
+Plugins are community-developed modules you can install on a Jenkins server. This adds features that Jenkins doesn’t have by default. You can install/upgrade all available plugins from the Jenkins dashboard.
+
+Jenkins Pipeline
+A Jenkins Pipeline is a user-created pipeline model. The pipeline includes a variety of plugins that help you define step-by-step actions in your software pipeline. This includes:
+
+Automated builds.
+Multi-step testing.
+Deployment procedures.
+Security scanning
+You can create pipelines directly in the user interface, or create a “Jenkinsfile” which represents a pipeline as code. Jenkinsfiles use a Groovy-compatible text-based format to define pipeline processes, and can be either declarative or scripted.
+
+Jenkins Architecture
+Jenkins elements interact and work together in the following way:
+
+Developers modify the source code, committing changes to the repository, and Jenkins creates a new build in order to handle the new Git commit.
+Jenkins can work in “push” or “pull” mode. The Jenkins CI server is either triggered by an event such as a code commit, or it can regularly check the repository for changes.
+The build server builds the code and generates an artifact. If the build fails, the developer receives an alert.
+Jenkins deploys the built application/executable to the test server, which can execute continuous, automated tests. Developers receive alerts if their changes impact functionality.
+Jenkins optionally deploys the changes to the production server if the code has no issues.
+The following diagram illustrates the Jenkins architecture:
+
+Jenkins Architecture
+Image Source: Jenkins
+
+You may need more than one Jenkins server to test code in different environments. A single server cannot always handle the load for large projects. If this is the case, you can use the distributed Jenkins architecture to implement continuous integration and testing. The Jenkins server can access the Controller environment, which distributes the workload across different Jenkins Agents.
+
+This distributed model lets you run different builds and tests simultaneously, with each Jenkins Agent environment running a different version of the code and the Controller controlling the operations.
